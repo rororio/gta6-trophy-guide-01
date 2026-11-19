@@ -3,23 +3,89 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<title>Leonida Legend — GTA 6 Trophy Guide &amp; Tracker</title>
+<meta name="description" content="Every one of GTA 6's 55 PS5 trophies with a cited guide, a roadmap to the platinum, and a checklist that saves in your browser. Works offline.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23ffc44d'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' font-family='Arial' font-weight='bold'%3EL%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header class="hero">
+  <p class="eyebrow">Grand Theft Auto VI &middot; PlayStation 5 &middot; 55 trophies</p>
+  <h1>Leonida Legend</h1>
+  <p class="tagline">The complete GTA 6 trophy guide and tracker — every trophy's official name, description and grade, a guide in our own words with its sources, a roadmap to the platinum, and a checklist that remembers you.</p>
+  <div class="facts" aria-label="Platinum facts">
+    <span><strong>1</strong> platinum</span><span><strong>2</strong> gold</span><span><strong>6</strong> silver</span><span><strong>46</strong> bronze</span>
+    <span>Difficulty <strong>4/10</strong></span><span>About <strong>200 hours</strong></span><span><strong>0</strong> online trophies</span><span><strong>1</strong> playthrough</span>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-line"><span id="progressText">0 of 55 earned</span><span id="progressPct">0%</span></div>
+    <div class="progress-bar" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="progressBar"><div id="progressFill"></div></div>
+    <p class="progress-sub" id="progressSub">Tick a trophy off and it stays ticked — progress is saved in this browser.</p>
+  </div>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
+
+<section class="missable-banner" id="missableBanner">
+  <h2>⚠ The one trophy you can miss</h2>
+  <p><strong>Positive Mental Attitude</strong> — meditate at every spot across Leonida. The first meditation, with Lucia on the balcony at Jason's house in Chapter 1 (after the mission Down to Earth), is gone for good after Chapter 1. Do it in Chapter 1 to be safe — it is still unconfirmed whether it is required. Every other trophy can be earned after the story. <button type="button" class="link-button" id="showMissable">Show it in the list ↓</button></p>
+</section>
+
+<section class="roadmap" id="roadmap" aria-label="Roadmap to the platinum">
+  <h2>Roadmap to the platinum</h2>
+  <p class="roadmap-intro">Built from PowerPyx's roadmap (difficulty 4/10, about 200 hours, 0 online trophies). The story is 5 chapters and takes 60–80 hours; there is no mission replay, no mission medals and no difficulty setting — so keep a manual save at the start of every chapter and before the final mission.</p>
+  <ol class="steps">
+    <li><h3>Step 1 — Finish the story <span class="hours">60–80 hours</span></h3>
+      <p>Play the story and enjoy it. Take optional missions as they appear, scan vehicles and study animals as you go — progress made during the story already counts toward the 100% checklist, even though the checklist only appears after the credits. The only thing to watch for is the Chapter 1 meditation above.</p></li>
+    <li><h3>Step 2 — The 100% checklist + 70 of 80 challenges <span class="hours">about 100 hours</span></h3>
+      <p>After the credits, the 35-task 100% checklist opens under Progress &gt; Stats &gt; 100% Completion. It is roughly 60% true completion: most side quests are not needed, collectibles are only partly needed, and any 70 of the 80 challenges will do. This step earns <strong>A Long Road</strong>, the hardest trophy, and most of the collectible and activity trophies along the way.</p></li>
+    <li><h3>Step 3 — Strangers &amp; Freaks and cleanup <span class="hours">about 10 hours</span></h3>
+      <p>Finish the 8 Strangers &amp; Freaks strands (Kirk, Kyle, Yago and Pilot Pete count) and the character questlines, then mop up whatever is left — the four UNVERIFIED trophies are still unconfirmed, so check back for them. The platinum pops when the last trophy does.</p></li>
+  </ol>
+  <p class="cheats"><strong>Keep cheats off.</strong> Cheats disable trophies and saving (PowerPyx / GTABase), so a trophy run with cheats on earns nothing. Cheats only unlock after the story in any case.</p>
+</section>
+
+<section class="controls" aria-label="Tracker controls">
+  <div class="control-row">
+    <label class="search-label">Search <input id="search" type="search" placeholder="Trophy name or guide word…" autocomplete="off"></label>
+    <label>Grade
+      <select id="grade">
+        <option value="all">All grades</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option>
+      </select>
+    </label>
+    <label>Show
+      <select id="earnedFilter">
+        <option value="all">All trophies</option><option value="remaining">Not yet earned</option><option value="earned">Earned only</option>
+      </select>
+    </label>
+    <label class="spoiler-label"><input id="spoiler" type="checkbox"> Spoiler-safe: hide story trophy names until earned</label>
+  </div>
+  <div class="control-row">
+    <div class="kind-filters" role="group" aria-label="Filter by kind">
+      <button type="button" data-kind="all" class="kind active" aria-pressed="true">All 55</button>
+      <button type="button" data-kind="story" class="kind" aria-pressed="false">Story</button>
+      <button type="button" data-kind="missable" class="kind" aria-pressed="false">⚠ Missable</button>
+      <button type="button" data-kind="collectibles" class="kind" aria-pressed="false">Collectibles</button>
+      <button type="button" data-kind="activities" class="kind" aria-pressed="false">Activities</button>
+      <button type="button" data-kind="online" class="kind" aria-pressed="false">Online</button>
+    </div>
+    <div class="io-buttons">
+      <button id="export" type="button">Export progress</button>
+      <label class="import">Import progress <input id="import" type="file" accept="application/json,.json"></label>
+      <button id="reset" type="button">Reset all</button>
+    </div>
+  </div>
+  <p class="list-meta"><span id="shownCount">55 trophies shown</span> &middot; <span id="statusNote">4 trophies are UNVERIFIED — no published guide has confirmed how they unlock yet.</span></p>
+</section>
+
+<main id="list" aria-live="polite"></main>
+<p id="emptyState" class="empty" hidden>No trophies match this filter. Try another kind or clear the search.</p>
+<p id="onlineNote" class="empty" hidden>There are no online trophies in GTA 6 — PowerPyx counts 0 online trophies, so this filter is empty on purpose.</p>
+
+<footer>
+  <h2>Sources &amp; notes</h2>
+  <p>Official names, descriptions and grades are PlayStation's, as listed by PlanetGTA6 from Exophase, PSNProfiles and TrueAchievements (18 Nov 2026). Every guide is written in our own words for this guide; each trophy names its source beside it. Main source: <a href="https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/">PowerPyx — GTA 6 Trophy Guide &amp; Roadmap</a>. Also consulted: <a href="https://www.planetgta6.com/en/gta-6-trophies/">PlanetGTA6 trophy list</a>, <a href="https://www.gtavice.net/guides/trophies-and-achievements">GTABase</a> and <a href="https://www.keengamer.com/articles/guides/gta-6-trophy-guide-platinum-roadmap-all-55-trophies/">KeenGamer</a>. No Rockstar logo, artwork or game screenshots are used anywhere in this guide — the look is our own. This guide works fully offline: it loads nothing from the network.</p>
+  <p class="fineprint">Progress is stored only in your browser (localStorage). Export downloads a file; import reads a file you choose. Nothing leaves your machine.</p>
+</footer>
+
 <script type="module" src="app.js"></script>
 </body>
 </html>
